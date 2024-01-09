@@ -45,7 +45,9 @@ function NavBar() {
     return (
         <>
         <Header></Header>
-        <AppBar className='bg-black' position="static">
+        <AppBar sx={{
+            backgroundColor: 'black'
+        }} position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Image src={logo} alt='logo' width={50} height={50}></Image>

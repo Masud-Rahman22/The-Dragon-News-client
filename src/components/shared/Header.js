@@ -7,11 +7,9 @@ import { getCurrentDate } from "@/utils/getCurrentDate";
 const Header = () => {
     const currentDate = getCurrentDate()
     return (
-        <Box sx={{
-            margin: '20px'
-        }}>
-            <Container className="flex justify-center">
-                <Image src={titleImg} alt='title' width={500} height={500}></Image>
+        <Box className="w-full my-5">
+            <Container>
+                <Image className=" mx-auto" src={titleImg} alt='title' width={500} height={500}></Image>
             </Container>
             <Typography textAlign='center' variant="h6" color='gray'>
                         Journalism without fear or favour.

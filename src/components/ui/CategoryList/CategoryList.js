@@ -16,7 +16,7 @@ const CategoryList = () => {
     },[])
     console.log(allCategories);
     return (
-        <Box className='mt-5 bg-gray-100 px-5 py-2'>
+        <Box className='mt-10 bg-gray-100 px-5 py-2'>
             <Typography variant="h6" >Categories</Typography>
             <Divider></Divider>
             <Stack className="mt-5" rowGap={1} sx={{ mt: '2.5'}}>{allCategories.map(category=>

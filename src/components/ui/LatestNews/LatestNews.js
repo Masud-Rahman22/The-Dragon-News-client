@@ -6,114 +6,65 @@ import Typography from '@mui/material/Typography';
 import Image from "next/image";
 import topNewsImg from '@/assets/top-news.png'
 import topNewsImg2 from '@/assets/top-news2.png'
-const LatestNews = () => {
+import { getAllNews } from "@/utils/getAllNews";
+// eslint-disable-next-line @next/next/no-async-client-component
+const LatestNews = async() => {
+    const {data:allNews} = await getAllNews()
+    // console.log(allNews[0]);
+
     return (
         <Box className="my-5">
             <Card>
                 <CardMedia>
-                    <Image src={topNewsImg} width={800} alt='top-news'></Image>
+                    <Image src={allNews[0].thumbnail_url} width={800} height={500} alt='top-news'></Image>
                 </CardMedia>
                 <CardContent>
-                    <p className="px-2 py-1 bg-red-500 rounded text-white w-28 my-5">Technology</p>
+                    <p className="px-2 py-1 bg-red-500 rounded text-white w-28 my-5">{allNews[0].category}</p>
                     <Typography gutterBottom variant="h5" component="div">
-                        Bitcoin Climbs As Elon Musk Says Tesla Likely To Accept It Again
+                    {allNews[0].title}
                     </Typography>
                     <Typography gutterBottom sx={{
                         margin: '15px 0px'
                     }}>
-                        By Masud Rahman - Jan 7 2024
+                        By {allNews[0].author.name} - {allNews[0].author.published_date}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        In a significant development for cryptocurrency enthusiasts, Bitcoin's value surged as Elon Musk hinted at Tesla's potential reacceptance of the digital currency. Musk's announcement sparked investor optimism, causing Bitcoin's price to rise. This statement signals a potential revival of Tesla's support for Bitcoin as a mode of payment for its products.
+                    {allNews[0].details.length>200 ? allNews[0].details.slice(0,200)+"..." : allNews[0].details}
                     </Typography>
                 </CardContent>
             </Card>
             {/* card layout */}
-            <Grid className="mt-5" container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                <Grid item xs={6}>
+            <Grid sx={{marginTop: '10px'}} container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                {
+                    allNews.slice(0,4).map(news => (
+                        <Grid key={news.id} item xs={6}>
                     <Card >
-                        <CardMedia>
-                            <Image src={topNewsImg2} width={800} alt='top-news'></Image>
+                        <CardMedia sx={{
+                            '& img':{
+                                width: '100%',
+                                height: '250px'
+                            }
+                        }}>
+                            <Image src={news.thumbnail_url} width={800} height={300} alt='top-news'></Image>
                         </CardMedia>
                         <CardContent>
-                            <p className="px-2 py-1 bg-red-500 rounded text-white w-28 my-5">Technology</p>
+                            <p className="px-2 py-1 bg-red-500 rounded text-white w-28 my-5">{news.category}</p>
                             <Typography gutterBottom>
-                                Bitcoin Climbs As Elon Musk Says Tesla Likely To Accept It Again
+                                {news.title.length>50 ? news.title.slice(0,50)+"..." : news.title}
                             </Typography>
                             <Typography gutterBottom sx={{
                                 margin: '15px 0px'
                             }}>
-                                By Masud Rahman - Jan 7 2024
+                                By {news.author.name} - {news.author.published_date}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                Elon Musk's indication of Tesla reconsidering Bitcoin as a payment method caused a surge in Bitcoin's value today. Excitement ensued.
+                                {news.details.length>200 ? news.details.slice(0,200)+"..." : news.details}
                             </Typography>
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={6}>
-                    <Card>
-                        <CardMedia>
-                            <Image src={topNewsImg2} width={800} alt='top-news'></Image>
-                        </CardMedia>
-                        <CardContent>
-                            <p className="px-2 py-1 bg-red-500 rounded text-white w-28 my-5">Technology</p>
-                            <Typography gutterBottom>
-                                Bitcoin Climbs As Elon Musk Says Tesla Likely To Accept It Again
-                            </Typography>
-                            <Typography gutterBottom sx={{
-                                margin: '15px 0px'
-                            }}>
-                                By Masud Rahman - Jan 7 2024
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Elon Musk's indication of Tesla reconsidering Bitcoin as a payment method caused a surge in Bitcoin's value today. Excitement ensued.
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid item xs={6}>
-                    <Card>
-                        <CardMedia>
-                            <Image src={topNewsImg2} width={800} alt='top-news'></Image>
-                        </CardMedia>
-                        <CardContent>
-                            <p className="px-2 py-1 bg-red-500 rounded text-white w-28 my-5">Technology</p>
-                            <Typography gutterBottom>
-                                Bitcoin Climbs As Elon Musk Says Tesla Likely To Accept It Again
-                            </Typography>
-                            <Typography gutterBottom sx={{
-                                margin: '15px 0px'
-                            }}>
-                                By Masud Rahman - Jan 7 2024
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Elon Musk's indication of Tesla reconsidering Bitcoin as a payment method caused a surge in Bitcoin's value today. Excitement ensued.
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid item xs={6}>
-                    <Card>
-                        <CardMedia>
-                            <Image src={topNewsImg2} width={800} alt='top-news'></Image>
-                        </CardMedia>
-                        <CardContent>
-                            <p className="px-2 py-1 bg-red-500 rounded text-white w-28 my-5">Technology</p>
-                            <Typography gutterBottom>
-                                Bitcoin Climbs As Elon Musk Says Tesla Likely To Accept It Again
-                            </Typography>
-                            <Typography gutterBottom sx={{
-                                margin: '15px 0px'
-                            }}>
-                                By Masud Rahman - Jan 7 2024
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Elon Musk's indication of Tesla reconsidering Bitcoin as a payment method caused a surge in Bitcoin's value today. Excitement ensued.
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </Grid>
+                    ))
+                }
             </Grid>
         </Box>
     );
